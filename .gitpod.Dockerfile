@@ -16,8 +16,8 @@ RUN pyenv install 3.6.12 \
         setuptools wheel virtualenv pipenv pylint rope flake8 \
         mypy autopep8 pep8 pylama pydocstyle bandit notebook \
         twine \
-    && python3 -m venv /workspace/py36 \
-    && /workspace/py36/bin/python -m install --no-cache-dir --upgrade pip \    
+    && python3 -m venv ~/py36 \
+    && ~/py36/bin/python -m install --no-cache-dir --upgrade pip \    
     && sudo rm -rf /tmp/*
 ENV PIP_USER=no
 ENV PIPENV_VENV_IN_PROJECT=true
