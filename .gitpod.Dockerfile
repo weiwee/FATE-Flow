@@ -3,10 +3,14 @@ FROM gitpod/workspace-full:latest
 
 
 ### Python ###
+USER root
+RUN mkdir -p /venv && chown gitpod:gitpod /venv
+
 USER gitpod
-RUN pyenv install 3.6.12 \
-    && pyenv global 3.6.12 \
-    && python3 -m pip install --no-cache-dir --upgrade pip \
-    && python3 -m venv ~/py36 \
-    && ~/py36/bin/python -m pip install --no-cache-dir --upgrade pip \    
+ENV PIP_USER=
+ENV PYTHONUSERBASE=
+RUN pyenv install 3.6.15 \
+    && pyenv global 3.6.15 \
+    && python3 -m venv /venv/py36 \
+    && /venv/py36/bin/python -m pip install --no-cache-dir --upgrade pip \    
     && sudo rm -rf /tmp/*
