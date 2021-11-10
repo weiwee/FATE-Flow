@@ -1,8 +1,13 @@
+image:
+  file: .gitpod.Dockerfile
+
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - name: install python 3.6
-    init: pyenv install 3.6.11 
-    command: echo 'start script'
+    init: |
+      unset PIP_USER
+      unset PYTHONUSERBASE
+
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
