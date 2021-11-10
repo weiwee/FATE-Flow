@@ -2,7 +2,14 @@
 tasks:
   - name: install python 3.6
     init: pyenv install 3.6.11 
-    command: echo 'start script'
+
+  - name: create virtualenv
+    init: |
+      ~/.pyenv/versions/3.6.11/bin/python -m venv /workspace/py36
+      source /workspace/py36/bin/activate
+      pip install -U pip
+      pip install tensorflow
+
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
