@@ -8,10 +8,13 @@ RUN apt-get update && apt-get install libgmp3-dev -y && apt-get install -y libmp
 RUN mkdir -p /venv && chown gitpod:gitpod /venv
 
 USER gitpod
+COPY requirements.txt /venv/
 ENV PIP_USER=
 ENV PYTHONUSERBASE=
 RUN pyenv install 3.6.15 \
     && pyenv global 3.6.15 \
     && python3 -m venv /venv/py36 --system-site-packages \
-    && /venv/py36/bin/python -m pip install --no-cache-dir --upgrade pip \    
-    && sudo rm -rf /tmp/*
+    && /venv/py36/bin/python -m pip install --no-cache-dir --upgrade pip \
+    && /venv/py36/bin/python -m pip install --no-cache-dir -r /venv/requirements.txt \
+    && sudo rm -rf /tmp/* \
+    && sudo rm /venv/requirements.txt
